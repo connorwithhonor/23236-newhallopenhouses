@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <title>Jim & Laurie · Maple Street · Connor with Honor</title>
+  <!-- elegant serif + readable sans-serif, with a font that gives capital I serifs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fefcf5;  /* warm cream */
+      color: #0a2a44;              /* deep navy */
+      line-height: 1.6;
+      font-size: 18px;             /* generous base */
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #0a2a44;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      border-left: 6px solid #b4945c;  /* muted gold */
+      padding-left: 1rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #b4945c;
+    }
+
+    p, li, .text-block {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+      color: #1e3a5f;  /* softer navy for body */
+    }
+
+    /* Special class for Connor's name: high contrast with serif I */
+    .connor-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.3em;
+      color: #0a2a44;  /* dark navy for maximum readability */
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+    }
+    .connor-name strong {
+      font-weight: 900;
+      color: #0a2a44;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* ––– navigation ––– */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: #fefcf5;
+      box-shadow: 0 4px 12px rgba(10, 42, 68, 0.08);
+      border-bottom: 2px solid #e5d9c6;
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0a2a44;
+      text-decoration: none;
+      padding: 0.5rem 0.4rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      border-bottom-color: #b4945c;
+      color: #b4945c;
+      outline: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: #0a2a44;
+      color: #fefcf5;
+      border: 2px solid #b4945c;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      min-height: 44px;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-toggle:hover { background: #1e3a5f; color: #fefcf5; }
+    .nav-toggle:focus-visible { outline: 2px solid #b4945c; outline-offset: 2px; }
+
+    /* ––– hero ––– with improved contrast */
+    .hero {
+      background: linear-gradient(rgba(10, 42, 68, 0.75), rgba(10, 42, 68, 0.7)), 
+                  url('https://assets.cdn.filesafe.space/3z37W4oH1lMfraSObL1X/media/69a10e939145423843be5bf3.png') center/cover no-repeat;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      color: #fefcf5;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      color: #ffffff;  /* pure white for max contrast */
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .hero .subhead {
+      font-size: 1.8rem;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      color: #fefcf5;
+      border-left: 4px solid #b4945c;
+      padding-left: 1.5rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    /* Your name in hero: light on dark so it’s visible */
+    .hero .connor-name,
+    .hero .connor-name strong {
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .hero-content::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #b4945c, rgba(180, 148, 92, 0.4));
+      margin-top: 1.5rem;
+      border-radius: 2px;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 1rem 1.5rem;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      border-radius: 60px;
+      font-size: 1.3rem;
+      border: 1px solid rgba(180, 148, 92, 0.4);
+    }
+    .contact-info a {
+      color: #ffffff;
+      text-decoration: none;
+      border-bottom: 1px dotted #b4945c;
+      padding: 0.25rem 0;
+      font-weight: 600;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .contact-info a:hover,
+    .contact-info a:focus-visible {
+      color: #b4945c;
+      outline: none;
+    }
+
+    .handcrafted-badge {
+      margin-top: 1.5rem;
+      background: #0a2a44;  /* dark navy */
+      color: #ffffff;        /* white text */
+      padding: 0.6rem 1.8rem;
+      border-radius: 40px;
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border: 1px solid #b4945c;
+    }
+
+    /* ––– sections with scroll fade ––– */
+    .section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+      margin: 1.5rem 0 4rem;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 12px 28px -10px rgba(10, 42, 68, 0.1), 0 0 0 1px rgba(10, 42, 68, 0.03);
+      border: 1px solid #e9dfcf;
+      transition: box-shadow 0.35s ease, transform 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 20px 40px -12px rgba(10, 42, 68, 0.15), 0 0 0 1px rgba(180, 148, 92, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .badge {
+      background-color: #b4945c;
+      color: #0a2a44;
+      font-weight: 600;
+      padding: 0.2rem 1rem;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .stat {
+      background: #fefcf5;
+      border: 1px solid #dacbad;
+      padding: 1.5rem;
+      transition: background 0.2s ease;
+    }
+    .stat:hover {
+      background: #f5ede1;
+    }
+
+    .stat strong {
+      color: #0a2a44;
+      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+      display: block;
+      line-height: 1.2;
+    }
+
+    /* ––– video embed container ––– */
+    .video-wrapper {
+      max-width: 800px;
+      margin: 2rem auto;
+      border: 2px solid #e5d9c6;
+      box-shadow: 0 20px 30px -10px rgba(10,42,68,0.2);
+    }
+
+    /* ––– faq accordion ––– */
+    .faq-item {
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid #dacbb0;
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 1.25rem 0.5rem 1.25rem 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #0a2a44;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover {
+      color: #b4945c;
+    }
+
+    .faq-question .icon {
+      font-size: 2rem;
+      line-height: 1;
+      color: #b4945c;
+      transition: transform 0.2s;
+    }
+
+    .faq-question[aria-expanded="true"] .icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 0.5rem 1.5rem 0;
+      display: none;
+    }
+
+    .faq-answer.show {
+      display: block;
+    }
+
+    /* ––– utility ––– */
+    .gold-accent {
+      color: #b4945c;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #e5d9c6;
+      margin: 2rem 0;
+    }
+
+    .small-note {
+      font-size: 0.95rem;
+      color: #4a627a;
+    }
+
+    /* ––– responsive ––– */
+    @media (max-width: 900px) {
+      .hero { min-height: 60vh; }
+      .hero h1 { font-size: 2.6rem; }
+      .hero .subhead { font-size: 1.5rem; }
+      .container { padding: 1.5rem 1.25rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-wrap { padding: 0; }
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.75rem 1rem;
+        gap: 0;
+      }
+      .nav-toggle {
+        display: flex;
+        margin: 0.5rem 1rem 0.5rem auto;
+        align-self: flex-end;
+      }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 0 1rem 1rem;
+        border-top: 1px solid #e5d9c6;
+      }
+      body.nav-open .nav-menu { display: flex; }
+      .nav-menu a {
+        padding: 0.85rem 0.5rem;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #e5d9c6;
+      }
+      .nav-menu a:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 700px) {
+      body { font-size: 16px; }
+      h2 { font-size: 1.8rem; padding-left: 0.75rem; }
+      h3 { font-size: 1.5rem; }
+      .hero { min-height: 55vh; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subhead { font-size: 1.35rem; padding-left: 1rem; }
+      .hero-content { padding: 1.5rem 1.25rem; }
+      .contact-info { font-size: 1rem; padding: 0.85rem 1.2rem; border-radius: 40px; }
+      .handcrafted-badge { font-size: 1rem; padding: 0.5rem 1.2rem; }
+      .card { padding: 1.5rem 1.25rem; }
+      .grid-2 { gap: 1.25rem; }
+      .stat { padding: 1.25rem; }
+      .faq-question { font-size: 1.25rem; padding: 1rem 0.5rem 1rem 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { min-height: 50vh; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero .subhead { font-size: 1.15rem; }
+      .container { padding: 1rem; }
+      .contact-info { flex-direction: column; align-items: center; gap: 0.5rem; }
+      .video-wrapper { margin: 1rem 0; }
+      .badge { font-size: 0.85rem; padding: 0.2rem 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- STICKY NAVIGATION (mobile hamburger) -->
+<div class="nav-wrap">
+  <nav>
+    <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-icon">☰</span> Menu
+    </button>
+    <div class="nav-menu">
+      <a href="#home">Home</a>
+      <a href="#video">Personal video</a>
+      <a href="#about">Your advocate</a>
+      <a href="#pledge">Loyalty pledge</a>
+      <a href="#vetting">Buyer vetting</a>
+      <a href="#market">Market & price</a>
+      <a href="#faq">Anticipating needs</a>
+    </div>
+  </nav>
+</div>
+
+<main>
+  <!-- HERO with improved contrast and black "handcoded" badge -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>A Custom Home Sale Strategy for Jim & Laurie Lessing.</h1>
+      <div class="subhead">23236 Maple Street, Newhall | Prepared by <span class="connor-name"><strong>C</strong>onnor <strong>M</strong>ac<strong>I</strong>vor</span></div>
+      <div class="contact-info">
+        📞 <a href="tel:16614001720">661-400-1720</a> &nbsp;|&nbsp; ✉️ <a href="mailto:connor@santaclaritaopenhouses.com">connor@santaclaritaopenhouses.com</a>
+      </div>
+      <div class="handcrafted-badge">
+        ⚜️ This site hand‑coded by Connor — daily student of current strategies
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- PERSONAL VIDEO MESSAGE (Loom embed for Jim & Laurie) -->
+    <section id="video" class="section">
+      <h2>A personal video message for Jim & Laurie</h2>
+      <div class="card video-wrapper">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+          <iframe src="https://www.loom.com/embed/ca8967dcc30a4736a664df79555a1436" 
+                  frameborder="0" 
+                  webkitallowfullscreen 
+                  mozallowfullscreen 
+                  allowfullscreen 
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+        </div>
+      </div>
+      <p class="small-note" style="text-align: center;">Connor recorded this exclusively for you — click play to hear how he’ll protect your interests.</p>
+    </section>
+
+    <!-- ABOUT CONNOR (with honor) -->
+    <section id="about" class="section">
+      <h2>Your advocate: <span class="connor-name">Connor with Honor</span></h2>
+      <div class="card">
+        <p><span class="badge">Licensed since 1998 · Santa Clarita roots</span></p>
+        <p style="font-size: 1.2rem;"><span class="connor-name"><strong>Connor MacIvor</strong></span> — known to every client as “Connor with Honor” — has been the quiet force behind some of Santa Clarita’s most successful home sales for over two decades. After a highly accomplished 20+ year career with RE/MAX, Connor transitioned to <strong>SYNC Brokerage</strong> to harness cutting‑edge technology and digital marketing exclusively for his sellers.</p>
+        <p>To demonstrate the technological edge he brings, <strong>Connor hand‑coded this very website</strong> personally for Jim and Laurie. Every line reflects his commitment to precision and white‑glove service. He studies the latest internet placement strategies daily, coding every attribute for top search visibility.</p>
+        <div class="grid-2" style="margin-top: 1.5rem;">
+          <div class="stat">
+            <strong>SantaClaritaOpenHouses.com</strong>
+            <span style="font-size: 0.95rem;">premium domain — exclusive buyer traffic</span>
+          </div>
+          <div class="stat">
+            <strong>NewhallOpenHouses.com</strong>
+            <span style="font-size: 0.95rem;">hyper‑local, high‑intent visitors</span>
+          </div>
+        </div>
+        <p style="margin-top: 1rem;">Connor also hosts the <em>“Santa Clarita Artificial Intelligence”</em> podcast, where he explores how modern tools protect and promote sellers’ interests. His reputation is built on trust, straight talk, and results that honor the families he serves.</p>
+      </div>
+    </section>
+
+    <!-- 100% SELLER LOYALTY PLEDGE -->
+    <section id="pledge" class="section">
+      <h2>The 100% Seller Loyalty Pledge</h2>
+      <div class="card" style="border-left: 8px solid #b4945c;">
+        <p style="font-size: 1.3rem;"><span class="gold-accent">⚜️</span> Connor’s strict <strong>“No Dual Agency”</strong> policy is absolute.</p>
+        <p>He never represents both buyer and seller. Period. That means his fiduciary duty, his loyalty, and his entire negotiating power are <strong>100% dedicated to protecting Jim and Laurie’s equity</strong>. In a world where many agents double‑end deals, Connor’s approach ensures your confidential information stays yours, and every dollar stays in your pocket.</p>
+        <p class="small-note">“You’ll never worry about divided loyalty. I work only for you.” – Connor</p>
+      </div>
+    </section>
+
+    <!-- RIGOROUS BUYER VETTING (new section) -->
+    <section id="vetting" class="section">
+      <h2>Rigorous buyer vetting — because I’m never on their side</h2>
+      <div class="card" style="border-left: 8px solid #b4945c;">
+        <p style="font-size: 1.2rem;"><span class="gold-accent">⚜️</span> <strong>Dual agency is still legal in California — but I refuse to practice it.</strong></p>
+        <p>Because I never represent the buyer, I am free to vet them with extreme diligence. Every potential purchaser must prove:</p>
+        <ul style="margin-left: 2rem; margin-bottom: 1.5rem; font-size: 1.1rem;">
+          <li><strong>✅ Proof of funds</strong> — verified bank statements, not just pre‑approval letters</li>
+          <li><strong>✅ Lender capability</strong> — I personally vet their lender’s track record to ensure they close on time</li>
+          <li><strong>✅ No overlap</strong> — there is never a moment where I have a fiduciary duty to both sides</li>
+        </ul>
+        <p>This means when we negotiate, <strong>I stand firm for you</strong>. There’s no softening to protect a buyer relationship. Every concession must benefit Jim and Laurie. My loyalty is 100% yours, from first showing to key handover.</p>
+        <p class="small-note">“I make sure they’re qualified before they ever step foot in your home.”</p>
+      </div>
+    </section>
+
+    <!-- MARKET REALITY & PRICING STRATEGY (condition‑aware) -->
+    <section id="market" class="section">
+      <h2>Market reality · pricing with precision</h2>
+      <div class="card">
+        <p><strong>Automated valuations</strong> (Zillow, Redfin) estimate around $780,000 sight‑unseen. But algorithms can't see the care, updates, or character of your home. That’s where a professional walkthrough becomes essential.</p>
+        
+        <h3 style="font-size: 1.9rem; margin: 1.8rem 0 0.8rem;">The comparables that matter</h3>
+        <div class="grid-2">
+          <div class="stat">
+            <strong>23538 Adamsboro Dr</strong>
+            4 bed, 2 bath · 1,500 sq ft<br>
+            <span style="font-size: 1.8rem; color:#0a2a44;">$800,000</span><br>
+            sold in 8 days
+          </div>
+          <div class="stat">
+            <strong>23806 Daisetta Dr</strong>
+            pending just under <strong>$800,000</strong><br>
+            <span style="font-size: 1.2rem;">active buyer demand at this tier</span>
+          </div>
+        </div>
+
+        <div style="margin: 2rem 0; padding: 1.2rem; background: #f5ede1; border-left: 5px solid #b4945c;">
+          <p style="font-weight: 700; font-size: 1.2rem;">⚠️ The danger of overpricing</p>
+          <p><strong>25085 Highspring</strong> listed at $919,900 – sat stale for <strong>123+ days</strong>. Momentum lost, showings dried up. Overpricing — regardless of condition — kills momentum and leads to lower net proceeds.</p>
+        </div>
+
+        <p style="font-size: 1.8rem; font-family: 'Playfair Display'; color:#b4945c; margin: 1.5rem 0 0.5rem;">Next step: <strong style="color:#0a2a44;">in‑person evaluation</strong></p>
+        <p>Because we haven’t yet seen 23236 Maple Street, the final list price will be determined after a personal walkthrough. Whether your home needs thoughtful updates or is in pristine move‑in condition, we will calibrate the price to reflect its true market value. The goal is to set a price that attracts maximum showing activity while protecting your equity.</p>
+        <p><strong>Preliminary range indication:</strong> Based on current comps, a well‑maintained home would likely fall in the <strong>$790,000–$815,000</strong> range. If significant updates are needed, we will adjust accordingly and create a pre‑marketing plan to address any concerns before launching.</p>
+      </div>
+    </section>
+
+    <!-- FAQ (accordion) with extra vetting question -->
+    <section id="faq" class="section">
+      <h2>Anticipating your questions</h2>
+      <div class="card" style="padding: 1.5rem 2rem;">
+        <!-- FAQ 1: trust paperwork -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Handling trust paperwork (Gerald S. Johnson / Lessing Trust)</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Connor has extensive experience navigating properties held in family trusts. Your home is part of the <strong>Gerald S. Johnson Trust and Lessing Trust</strong> — he will coordinate directly with your trustee and attorney to ensure the legal transition is seamless, stress‑free, and properly documented. No delays, no confusion.</p>
+          </div>
+        </div>
+        <!-- FAQ 2: why not price higher -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Why not price higher just to see?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>The first 14 days on market are critical — that’s when the most active buyers and agents see your home as “fresh.” Overpricing deters showings, and after two weeks, the listing feels stale. Then you’re forced to reduce, often below a smart initial price. Pricing right the first time builds momentum and yields the highest net.</p>
+          </div>
+        </div>
+        <!-- FAQ 3: SYNC advantage -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>The SYNC Brokerage advantage</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>SYNC Brokerage combines luxury reach with modern digital syndication. Your listing isn’t just on MLS — it’s pushed to global luxury portals, targeted social, and Connor’s own high‑traffic sites (SantaClaritaOpenHouses.com). Legacy brokerages rely on print ads; SYNC ensures qualified buyers see your home wherever they search.</p>
+          </div>
+        </div>
+        <!-- FAQ 4: condition and repairs -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What if the home needs repairs or updates?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We’ll discuss that transparently during our walkthrough. If there are items that could affect value or showability, I’ll provide a prioritized list and cost‑benefit guidance so you can decide what makes sense before going live. Many sellers are surprised how small investments can yield significant returns.</p>
+          </div>
+        </div>
+        <!-- FAQ 5: buyer vetting depth -->
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How do you vet buyers since you don't represent them?</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>I require <strong>proof of funds</strong> (not just pre‑approval), verify the lender’s capability and closing history, and ensure there is no overlap where I’d have to represent the buyer. Because I never enter dual agency, I can be tougher in vetting — which means only serious, qualified buyers ever see your home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact / hand‑coded footer -->
+    <hr>
+    <div style="text-align: center; padding: 1.5rem 0 3rem;">
+      <div class="handcrafted-badge" style="margin-bottom: 1.5rem; background: #0a2a44; color: white;">⚜️ Entire presentation hand‑coded by Connor MacIvor</div>
+      <p style="font-size: 1.2rem;">
+        📞 <a href="tel:16614001720" style="color: #0a2a44; text-decoration: none; border-bottom: 1px solid #b4945c;">661-400-1720</a> &nbsp;|&nbsp;
+        ✉️ <a href="mailto:connor@santaclaritaopenhouses.com" style="color: #0a2a44; text-decoration: none; border-bottom: 1px solid #b4945c;">connor@santaclaritaopenhouses.com</a>
+      </p>
+      <p class="small-note">Connor studies daily the most current internet placement strategies — every attribute of this site is coded for top performance.</p>
+    </div>
+  </div>
+</main>
+
+<!-- SCROLL FADE + ACCORDION + NAV TOGGLE SCRIPT -->
+<script>
+  (function() {
+    // Mobile nav toggle
+    var navToggle = document.querySelector('.nav-toggle');
+    var navMenu = document.querySelector('.nav-menu');
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function() {
+        var open = document.body.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', open);
+        navToggle.querySelector('.nav-toggle-icon').textContent = open ? '✕' : '☰';
+      });
+      navMenu.querySelectorAll('a').forEach(function(a) {
+        a.addEventListener('click', function() {
+          document.body.classList.remove('nav-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.querySelector('.nav-toggle-icon').textContent = '☰';
+        });
+      });
+    }
+
+    // Scroll fade observer
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Accordion functionality
+    const faqButtons = document.querySelectorAll('.faq-question');
+    faqButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+        this.setAttribute('aria-expanded', expanded);
+        
+        const icon = this.querySelector('.icon');
+        icon.textContent = expanded ? '–' : '+';
+        
+        const answer = this.nextElementSibling;
+        if (answer && answer.classList.contains('faq-answer')) {
+          if (expanded) {
+            answer.classList.add('show');
+          } else {
+            answer.classList.remove('show');
+          }
+        }
+      });
+    });
+
+    // Initial visibility for sections near top
+    setTimeout(() => {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          section.classList.add('visible');
+        }
+      });
+    }, 200);
+  })();
+</script>
+
+<!-- fallback for noscript -->
+<noscript>
+  <style>.section { opacity: 1; transform: none; } .faq-answer { display: block; } .icon { display: none; }</style>
+</noscript>
+
+</body>
+</html>
